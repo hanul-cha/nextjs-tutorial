@@ -3,6 +3,7 @@ import axios from 'axios';
 import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import ItemList from '../src/component/itemList';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -13,8 +14,8 @@ export default function Home() {
   function getDate() {
     axios.get(API_URL)
       .then(res => {
-        console.log(res.data)
-        setList(res.data)
+        console.log(res.data);
+        setList(res.data);
       });
   }
 
@@ -27,9 +28,7 @@ export default function Home() {
       <Head>
           <title>HOME | 한울</title>
       </Head>
-      <p>
-        예시 태그입니다
-      </p>
+      <ItemList list={list} />
     </div>
   );
 }
