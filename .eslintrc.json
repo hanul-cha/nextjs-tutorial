@@ -1,3 +1,11 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+     // Other rules 
+     //img를 썻을때 오류뜨는걸 없앨부분
+     "@next/next/no-img-element": "off",
+     //카나리아 버전 업데이트 없이 오류없애기
+     "@next/next/no-document-import-in-page": "off"
+    }
+
 }
