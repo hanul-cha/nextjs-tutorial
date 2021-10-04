@@ -1,7 +1,7 @@
 import { Grid, Image } from 'semantic-ui-react'
+import styles from './ItemList.module.css';
 
 export default function ItemList({ list }) {
-    console.log(list)
 
     return (
         <div>
@@ -9,7 +9,18 @@ export default function ItemList({ list }) {
                 <Grid.Row>
                     {list.map((item) => (
                         <Grid.Column key={item.id}>
-                            <img src={item.image_link} alt={item.name}/>
+                            <div className={styles.wrap}>
+                                <img 
+                                    src={item.image_link} 
+                                    alt={item.name}
+                                    className={styles.img_item}
+                                />
+                                <string className={styles.tit_item}>{item.name}</string>
+                                <span className={styles.txt_info}>
+                                    {item.category} {item.product_type}
+                                </span>
+                                <string className={styles.nun_price}>${item.price}</string>
+                            </div>
                         </Grid.Column>
                     ))}  
                 </Grid.Row>
