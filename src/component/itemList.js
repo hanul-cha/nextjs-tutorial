@@ -2,6 +2,7 @@ import { Grid, Image } from 'semantic-ui-react'
 import styles from './ItemList.module.css';
 import Link from "next/link";
 
+
 export default function ItemList({ list }) {
 
     return (
@@ -18,11 +19,11 @@ export default function ItemList({ list }) {
                                         alt={item.name}
                                         className={styles.img_item}
                                     />
-                                    <string className={styles.tit_item}>{item.name}</string>
+                                    <strong className={styles.tit_item}>{item.name}</strong>
                                     <span className={styles.txt_info}>
                                         {item.category} {item.product_type}
                                     </span>
-                                    <string className={styles.nun_price}>${item.price}</string>
+                                    <strong className={styles.nun_price}>${item.price}</strong>
                                 </div>
                             </a>
                             </Link>
