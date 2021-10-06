@@ -4,7 +4,13 @@ import { Menu } from "semantic-ui-react";
 
 export default function Gnb() {
     const router = useRouter();
-    const activeItem = 'home'
+    let activeItem;
+
+    if(router.pathname === "/"){//router를 콘솔에 찍어보면 여러가지 유용한 정보를 가져올수 있다는걸 알수있음
+        activeItem = "home";
+    } else if(router.pathname === "/about"){
+        activeItem = "about";
+    }
 
 
     function goLink(e, data) {
