@@ -11,7 +11,11 @@ export default function Home() {
   const [list, setList] = useState([]);
   const [isLoding, setIsLoading] = useState(true); //로딩상태값
 
-  const API_URL = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline';
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  /* 
+  개발환경에서 열면 (npm run dev) .env.development에서 가져옴
+  프로덕션 환경에서 열면 (npm run start) .env.production에서 가져옴
+  */
 
   function getDate() {
     Axios.get(API_URL)
