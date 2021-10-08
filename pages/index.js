@@ -53,4 +53,7 @@ export async function getStaticProps() { //[id].js 와는 다르게 url이름처
 데이터를 받아오는 정적페이지
 
 next js에서도 제품리스트같은 페이지는 정적 생성을 권장하고 있음
+
+정적생성을 하게되면 빈화면에 할당해주는게 아니라 빌드시에 html이 생성되기 때문에(미리 만들어진 static html을 제공)
+빌드후 살펴보면  html파일로 확장이 되어있음 또한 로딩속도도 빠르다
 */
