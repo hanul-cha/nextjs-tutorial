@@ -6,20 +6,33 @@ import { Loader } from "semantic-ui-react";
 import Item from "../../src/component/Item";
 
 const Post = ({ item, name }) => {
-  return (
-    <>
-      {item && (
+    const router = useRouter();
+
+    if(router.isFallback) {
+        return(
+            <div style={{ padding: "100px 0" }}>
+                <Loader active inline="centered">
+                    Loading
+                </Loader>
+            </div>
+        )
+    }
+
+
+    return (
         <>
-          <Head>
-            <title>{item.name}</title>
-            <meta name="description" content={item.description}></meta>
-          </Head>
-          {name} 환경입니다
-          <Item item={item} />
+        {item && (
+            <>
+            <Head>
+                <title>{item.name}</title>
+                <meta name="description" content={item.description}></meta>
+            </Head>
+            {name} 환경입니다
+            <Item item={item} />
+            </>
+        )}
         </>
-      )}
-    </>
-  );
+    );
 };
 
 export default Post;
@@ -31,22 +44,22 @@ export function getStaticPaths() {
             { params: { id: "730" } },
             { params: { id: "729" } },
         ],
-        fallback: false, // 이부분에 false가 들어가면  params에 할당 안된것들은 연결을 안시켜줌(404 error)
+        fallback: true, // 이부분에 false가 들어가면  params에 할당 안된것들은 연결을 안시켜줌(404 error)
     }
 }
 
 export async function getStaticProps(context) {
-  const id = context.params.id;
-  const apiUrl = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`;
-  const res = await Axios.get(apiUrl);
-  const data = res.data;
+    const id = context.params.id;
+    const apiUrl = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`;
+    const res = await Axios.get(apiUrl);
+    const data = res.data;
 
-  return {
-    props: {
-      item: data,
-      name: process.env.name
-    },
-  };
+    return {
+        props: {
+        item: data,
+        name: process.env.name
+        },
+    };
 }
 
 /*
