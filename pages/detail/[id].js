@@ -37,13 +37,25 @@ const Post = ({ item, name }) => {
 
 export default Post;
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+    const apiUrl = process.env.apiUrl;
+    const res = await Axios.get(apiUrl);
+    const data = res.data;
     return {
-        paths: [
+        /* paths: [
             { params: { id: "740" } }, //정적으로 생성해줄 라우터들을 나열
             { params: { id: "730" } },
             { params: { id: "729" } },
-        ],
+        ], */
+        //최상단 제품 3개가 언제나 똑같지 않을수 있어 바꿔줄것임
+
+        paths: data.slice(0, 9).map((item) => ({
+            params: {
+              id: item.id.toString(),
+            },
+          })),
+
+
         fallback: true, // 이부분에 false가 들어가면  params에 할당 안된것들은 연결을 안시켜줌(404 error)
     }
 }
